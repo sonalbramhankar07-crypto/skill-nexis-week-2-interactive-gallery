@@ -1,0 +1,58 @@
+// Select all gallery images
+const images = document.querySelectorAll(".gallery-item img");
+
+// Select lightbox elements
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeBtn = document.getElementById("closeBtn");
+
+
+// Open image in lightbox
+images.forEach(function(image) {
+
+    image.addEventListener("click", function() {
+
+        // Get clicked image source
+        lightboxImage.src = image.src;
+
+        // Get image alt text
+        lightboxImage.alt = image.alt;
+
+        // Show lightbox
+        lightbox.classList.add("active");
+
+    });
+
+});
+
+
+// Close lightbox using X button
+closeBtn.addEventListener("click", function() {
+
+    lightbox.classList.remove("active");
+
+});
+
+
+// Close lightbox by clicking outside image
+lightbox.addEventListener("click", function(event) {
+
+    if (event.target === lightbox) {
+
+        lightbox.classList.remove("active");
+
+    }
+
+});
+
+
+// Close lightbox using Escape key
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        lightbox.classList.remove("active");
+
+    }
+
+});
